@@ -1,4 +1,10 @@
 img {
 	display: block;
 	padding: 2em;
+	filter: blur(20px);
+	transition: filter .4s;
+	transform: translateZ(0);
+}
+.loaded {
+	filter: blur(0px);
 }

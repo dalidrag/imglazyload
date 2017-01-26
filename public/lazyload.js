@@ -2,6 +2,11 @@ window.onload = () => {
 	alert("Page ready."); // for demonstration purposes
 };
 
+// creates blur up animation effect on downloaded and displayed image
+function blurUp(e) {
+  e.target.classList.add('loaded');
+}
+
 // our event handler; for each image it will check
 // whether it entered the visible part of the page
 // and if it did, copy data-src attribute of the image
@@ -13,8 +18,9 @@ var lazyLoadImages = debounce(function() {
   // load images that have entered the viewport
   [].forEach.call(images, function (item) {
     if (isElementInViewport(item)) {
+      item.addEventListener("load", blurUp);
       item.setAttribute("src",item.getAttribute("data-src"));
-      item.removeAttribute("data-src")
+      item.removeAttribute("data-src");
     }
   })
   // if all the images are loaded, stop calling the handler
